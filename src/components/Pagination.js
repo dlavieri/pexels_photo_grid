@@ -4,7 +4,7 @@ import {
   StyledPageButton,
   StyledPaginationContainer,
 } from "../styled-components/Pagination.styled";
-import usePagination from "../../hooks/usePagination";
+import usePagination from "../hooks/usePagination";
 
 const Pagination = ({ onPageSelect, currentPage, pageCount }) => {
   if (pageCount <= 1) {

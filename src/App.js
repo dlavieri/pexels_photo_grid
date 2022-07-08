@@ -27,6 +27,8 @@ const App = () => {
     const response = client.photos.search({ query, per_page: perPage });
   };
 
+  const onPageSelect = () => {};
+
   return (
     <>
       <h1>This is a React App.</h1>
