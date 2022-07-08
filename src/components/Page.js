@@ -10,7 +10,7 @@ const Page = ({ photos, onPageSelect, currentPage, pageCount }) => {
         return (
           <Image
             photographer={photo.photographer}
-            imgUrl={photo.url}
+            imgUrl={photo.src.medium}
             photographerUrl={photo.photographer_url}
           />
         );
