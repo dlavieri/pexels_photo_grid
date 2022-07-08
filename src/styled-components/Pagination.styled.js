@@ -12,14 +12,10 @@ export const StyledPagination = styled.div`
   display: flex;
   max-width: 100%;
   margin-top: 20px;
-  border: 1px solid #4a4a4a;
-  border-radius: 4px;
-  overflow: hidden;
 `;
 
 export const StyledPageButton = styled.button`
-  color: ${({ selected }) =>
-    selected ? "var(--brand-color-text)" : "#4a4a4a"};
+  color: ${({ selected }) => (selected ? "#ffffff" : "#4a4a4a")};
   display: flex;
   justify-content: center;
   align-items: center;
@@ -28,7 +24,19 @@ export const StyledPageButton = styled.button`
   font-weight: ${({ selected }) => (selected ? "bold" : "")};
   cursor: ${({ noCursor, selected }) =>
     noCursor || selected ? "default" : "pointer"};
-  background-color: ${({ selected }) => (selected ? "#097886" : "#000000")};
+  background-color: ${({ selected }) => (selected ? "#097886" : "#ffffff")};
   border: none;
   border-right: ${({ noBorder }) => (noBorder ? "" : "1px solid #4a4a4a")};
+  border-top: 1px solid #4a4a4a;
+  border-bottom: 1px solid #4a4a4a;
+
+  :first-child {
+    border-radius: 4px 0 0 4px;
+    border: 1px solid #4a4a4a;
+  }
+
+  :last-child {
+    border-radius: 0 4px 4px 0;
+    border-right: 1px solid #4a4a4a;
+  }
 `;
