@@ -2,12 +2,19 @@ import { useState, useEffect } from "react";
 import { createClient } from "pexels";
 import { API_KEY } from "../../api";
 
-const useApi = ({ query, perPage }) => {
-  const [loading, setLoading] = useState(false);
-  const [response, setResponse] = useState([]);
+const useApi = (query, perPage, page) => {
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState();
+  const [photos, setPhotos] = useState([]);
+  const [pageCount, setPageCount] = useState(0);
 
   const client = createClient(API_KEY);
+
+  const handleResponse = (response) => {
+    const count = Math.ceil(response.total_results / perPage);
+    setPageCount(count);
+    setPhotos(response.photos);
+  };
 
   const fetchCuratedPhotos = async (perPage, page) => {
     try {
@@ -15,9 +22,10 @@ const useApi = ({ query, perPage }) => {
         per_page: perPage,
         page,
       });
-      setResponse(response);
-    } catch (error) {
-      setError(error);
+      console.log(response);
+      handleResponse(response);
+    } catch (e) {
+      setError(e);
     } finally {
       setLoading(false);
     }
@@ -30,9 +38,9 @@ const useApi = ({ query, perPage }) => {
         per_page: perPage,
         page,
       });
-      setResponse(response);
-    } catch (error) {
-      setError(error);
+      handleResponse(response);
+    } catch (e) {
+      setError(e);
     } finally {
       setLoading(false);
     }
@@ -40,13 +48,13 @@ const useApi = ({ query, perPage }) => {
 
   useEffect(() => {
     if (query) {
-      fetchQueryPhotos(query, perPage, currentPage);
+      fetchQueryPhotos(query, perPage, page);
     } else {
-      fetchCuratedPhotos(perPage, currentPage);
+      fetchCuratedPhotos(perPage, page);
     }
-  }, [query, perPage, currentPage]);
+  }, [query, perPage, page]);
 
-  return { loading, response, error };
+  return { loading, photos, pageCount, error };
 };
 
 export default useApi;

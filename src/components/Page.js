@@ -1,20 +1,45 @@
 import React, { useState } from "react";
 import Image from "./Image";
 import Pagination from "./Pagination";
-import { StyledPage } from "../styled-components/Page.styled";
+import LoadingSkeleton from "./LoadingSkeleton";
+import { StyledPage, StyledGrid } from "../styled-components/Page.styled";
 
-const Page = ({ photos, onPageSelect, currentPage, pageCount }) => {
+const Page = ({
+  photos,
+  onPageSelect,
+  currentPage,
+  pageCount,
+  loading,
+  perPage,
+}) => {
   return (
     <StyledPage>
-      {photos.map((photo) => {
-        return (
-          <Image
-            photographer={photo.photographer}
-            imgUrl={photo.src.medium}
-            photographerUrl={photo.photographer_url}
-          />
-        );
-      })}
+      <StyledGrid>
+        {loading ? (
+          <LoadingSkeleton perPage={perPage} />
+        ) : (
+          photos.map((photo) => {
+            return (
+              <Image
+                photographer={photo.photographer}
+                imgUrl={photo.src.medium}
+                photographerUrl={photo.photographer_url}
+                altText={photo.alt}
+              />
+            );
+          })
+        )}
+        {/* {photos.map((photo) => {
+          return (
+            <Image
+              photographer={photo.photographer}
+              imgUrl={photo.src.medium}
+              photographerUrl={photo.photographer_url}
+              altText={photo.alt}
+            />
+          );
+        })} */}
+      </StyledGrid>
       <Pagination
         onPageSelect={onPageSelect}
         currentPage={currentPage}

@@ -1,8 +1,10 @@
 import React from "react";
-import { StyledSkeleton } from "../styled-components/LoadingSkeleton.styled";
+import { StyledImageLoading } from "../styled-components/LoadingSkeleton.styled";
 
-const LoadingSkeleton = () => {
-  return <StyledSkeleton />;
+const LoadingSkeleton = ({ perPage = 10 }) => {
+  return [...Array(perPage)].map((e, i) => (
+    <StyledImageLoading key={`loading_${i}`} delay={i * 100} />
+  ));
 };
 
 export default LoadingSkeleton;
