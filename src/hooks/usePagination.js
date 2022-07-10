@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import { useMemo } from "react";
 import { range } from "lodash";
 
 export const usePagination = ({ pageCount, currentPage }) => {
