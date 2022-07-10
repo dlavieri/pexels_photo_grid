@@ -10,7 +10,9 @@ export const StyledImagePreview = styled.div`
   border-radius: 6px;
   position: relative;
 
-  caption {
+  .caption {
+    display: flex;
+    justify-content: center;
     font-family: sans-serif;
     transition: all 300ms ease-in-out;
     opacity: 0;
@@ -27,7 +29,7 @@ export const StyledImagePreview = styled.div`
   }
 
   :hover {
-    caption {
+    .caption {
       opacity: 1;
       height: 60px;
     }
@@ -38,7 +40,7 @@ export const StyledImagePreview = styled.div`
     width: 200px;
   }
 
-  @media (max-width: 375px) {
+  @media (max-width: 500px) {
     height: 150px;
     width: 150px;
   }

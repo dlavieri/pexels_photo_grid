@@ -1,31 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Page from "./components/Page";
 import Search from "./components/Search";
 import useApi from "./hooks/useApi";
+import { usePhotosContext } from "./providers/photosProvider";
 
 const App = () => {
-  const [perPage, setPerPage] = useState(10);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [query, setQuery] = useState("");
-  const { loading, photos, pageCount, error } = useApi(
-    query,
-    perPage,
-    currentPage
-  );
-
-  const onPageSelect = () => {};
+  const { currentPage, perPage, query } = usePhotosContext();
+  const { loading, photos, pageCount } = useApi(query, perPage, currentPage);
 
   return (
     <>
-      <h1>This is a React App.</h1>
       <Search />
-      <Page
-        photos={photos}
-        onPageSelect={onPageSelect}
-        currentPage={currentPage}
-        pageCount={pageCount}
-        loading={loading}
-      />
+      <Page photos={photos} pageCount={pageCount} loading={loading} />
     </>
   );
 };

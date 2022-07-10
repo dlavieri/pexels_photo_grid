@@ -30,7 +30,7 @@ export const StyledImageLoading = styled.div`
     width: 200px;
   }
 
-  @media (max-width: 375px) {
+  @media (max-width: 500px) {
     height: 150px;
     width: 150px;
   }

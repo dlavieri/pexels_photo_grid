@@ -5,8 +5,11 @@ import {
   StyledPaginationContainer,
 } from "../styled-components/Pagination.styled";
 import usePagination from "../hooks/usePagination";
+import { usePhotosContext } from "../providers/photosProvider";
 
-const Pagination = ({ onPageSelect, currentPage, pageCount }) => {
+const Pagination = ({ pageCount }) => {
+  const { setCurrentPage, currentPage } = usePhotosContext();
+
   if (pageCount <= 1) {
     return null;
   }
@@ -18,7 +21,7 @@ const Pagination = ({ onPageSelect, currentPage, pageCount }) => {
         {currentPage !== 1 && (
           <StyledPageButton
             aria-label="Go to Previous Page"
-            onClick={() => onPageSelect(currentPage - 1)}
+            onClick={() => setCurrentPage(currentPage - 1)}
           >
             Previous
           </StyledPageButton>
@@ -35,7 +38,7 @@ const Pagination = ({ onPageSelect, currentPage, pageCount }) => {
           return (
             <StyledPageButton
               key={key}
-              onClick={() => onPageSelect(page)}
+              onClick={() => setCurrentPage(page)}
               selected={page === currentPage}
               aria-label={`Go to Page ${page}`}
             >
@@ -46,7 +49,7 @@ const Pagination = ({ onPageSelect, currentPage, pageCount }) => {
         {currentPage !== pageCount && (
           <StyledPageButton
             aria-label="Go to Next Page"
-            onClick={() => onPageSelect(currentPage + 1)}
+            onClick={() => setCurrentPage(currentPage + 1)}
             noBorder
           >
             Next

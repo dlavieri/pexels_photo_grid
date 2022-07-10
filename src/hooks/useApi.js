@@ -4,9 +4,8 @@ import { API_KEY } from "../../api";
 
 const useApi = (query, perPage, page) => {
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState();
   const [photos, setPhotos] = useState([]);
-  const [pageCount, setPageCount] = useState(0);
+  const [pageCount, setPageCount] = useState(1);
 
   const client = createClient(API_KEY);
 
@@ -17,30 +16,31 @@ const useApi = (query, perPage, page) => {
   };
 
   const fetchCuratedPhotos = async (perPage, page) => {
+    setLoading(true);
     try {
       const response = await client.photos.curated({
         per_page: perPage,
         page,
       });
-      console.log(response);
       handleResponse(response);
     } catch (e) {
-      setError(e);
+      console.error(e);
     } finally {
       setLoading(false);
     }
   };
 
   const fetchQueryPhotos = async (query, perPage, page) => {
+    setLoading(true);
     try {
-      const response = client.photos.search({
+      const response = await client.photos.search({
         query,
         per_page: perPage,
         page,
       });
       handleResponse(response);
     } catch (e) {
-      setError(e);
+      console.error(e);
     } finally {
       setLoading(false);
     }
@@ -54,7 +54,7 @@ const useApi = (query, perPage, page) => {
     }
   }, [query, perPage, page]);
 
-  return { loading, photos, pageCount, error };
+  return { loading, photos, pageCount };
 };
 
 export default useApi;

@@ -24,7 +24,7 @@ export const StyledPageButton = styled.button`
   font-weight: ${({ selected }) => (selected ? "bold" : "")};
   cursor: ${({ noCursor, selected }) =>
     noCursor || selected ? "default" : "pointer"};
-  background-color: ${({ selected }) => (selected ? "#097886" : "#ffffff")};
+  background-color: ${({ selected }) => (selected ? "#4a4a4a" : "#ffffff")};
   border: none;
   border-right: ${({ noBorder }) => (noBorder ? "" : "1px solid #4a4a4a")};
   border-top: 1px solid #4a4a4a;
