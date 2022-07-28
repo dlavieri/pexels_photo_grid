@@ -1,4 +1,4 @@
-# Rokt Coding Assessment, July 2022
+# Coding take-home, July 2022
 
 ## About MVP
 
