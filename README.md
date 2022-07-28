@@ -2,7 +2,7 @@
 
 ## About MVP
 
-This is a basic application for viewing and searching images from the Pexels API. It is made with React v18, styled-components for styles, Context API for state management, and Jet / React-testing-library for front end unit tests. Built with custom webpack config.
+This is a basic application for viewing and searching images from the Pexels API. It is made with React v18, styled-components for styles, Context API for state management, and Jest / React-testing-library for front end unit tests. Built with custom webpack config.
 
 As a user:
 I can see an initial set of curated photos on the home screen
